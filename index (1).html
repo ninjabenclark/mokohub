@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MokoHub Login</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth-compat.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      backdrop-filter: blur(15px);
+    }
+    input {
+      padding: 12px 16px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 100%;
+    }
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>🔐 MokoHub Secure Login</h2>
+    <input type="email" id="email" placeholder="Email" /><br />
+    <input type="password" id="password" placeholder="Password" /><br />
+    <button onclick="login()">Login</button>
+    <p id="error" style="color: red;"></p>
+  </div>
+
+  <script>
+    const firebaseConfig = {'apiKey': 'AIzaSyDWyCTcP24RYlISkYGKpTgFyfn5QJrKYi0', 'authDomain': 'mokohubai.firebaseapp.com', 'projectId': 'mokohubai', 'storageBucket': 'mokohubai.firebasestorage.app', 'messagingSenderId': '33433866795', 'appId': '1:33433866795:web:7b120a150145a80b2a106e', 'measurementId': 'G-DY1YDE7MZB'};
+
+    firebase.initializeApp(firebaseConfig);
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "https://mokoai.org/";
+        })
+        .catch((error) => {
+          document.getElementById("error").textContent = error.message;
+        });
+    }
+  </script>
+</body>
+</html>
